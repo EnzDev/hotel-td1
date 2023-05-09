@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Room {
     int floor;
     int roomNumber;
@@ -9,5 +11,20 @@ public class Room {
         this.floor = floor;
         this.roomNumber = roomNumber;
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return floor == room.floor
+                && roomNumber == room.roomNumber
+                && Double.compare(room.price, price) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(floor, roomNumber, price);
     }
 }
