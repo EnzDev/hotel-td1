@@ -5,7 +5,7 @@ import model.Room;
 import java.util.List;
 
 public class RoomDaoTest implements RoomDao {
-    private final List<Room> rooms;
+    private List<Room> rooms;
 
     public RoomDaoTest(List<Room> rooms) {
         this.rooms = rooms;
@@ -14,5 +14,10 @@ public class RoomDaoTest implements RoomDao {
     @Override
     public List<Room> getAll() {
         return this.rooms;
+    }
+
+    @Override
+    public void setRooms(List<Room> roomsWithNewPrice) {
+        rooms = roomsWithNewPrice;
     }
 }
