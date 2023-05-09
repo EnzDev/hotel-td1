@@ -2,16 +2,13 @@ import dao.RoomDao;
 import dao.RoomDaoTest;
 import model.Room;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import service.RoomService;
 import service.RoomServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomServiceTest {
     private static final RoomDao EMPTY_ROOM_DAO = new RoomDaoTest(new ArrayList<>());
@@ -58,16 +55,57 @@ public class RoomServiceTest {
     }
 
     @Test
-    void room_with_same_info_should_be_equals() {
+    void update_base_price_updates_price_floor0to3() {
         // Given
-        RoomService service = new RoomServiceImpl(ONE_ROOM_DAO);
+        List<Room> rooms = Arrays.asList(
+                new Room(0, 1, 50),
+                new Room(1, 101, 50),
+                new Room(2, 201, 50),
+                new Room(3, 301, 50)
+        );
+        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
 
         // When
+        service.setPrice(100);
         List<Room> allRooms = service.getAllRooms();
 
         // Then
-        assertEquals(allRooms.get(0), new Room(0, 1, 50));
+        assertEquals(allRooms.get(0), new Room(0, 1, 100));
+        assertEquals(allRooms.get(1), new Room(1, 101, 107));
+        assertEquals(allRooms.get(2), new Room(2, 201, 122));
+        assertEquals(allRooms.get(3), new Room(3, 301, 133));
     }
+
+    @Test
+    void should_update_price_not_over_200() {
+        // Given
+        List<Room> rooms = Collections.singletonList(new Room(3, 301, 50));
+        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
+
+        // When
+        service.setPrice(190);
+        List<Room> allRooms = service.getAllRooms();
+
+        // Then
+        assertEquals(allRooms.get(0), new Room(3, 301, 200));
+    }
+
+    @Test
+    void should_break_when_invalid_floor() {
+        // Given
+        List<Room> rooms = Collections.singletonList(new Room(4, 301, 50));
+        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
+
+        // When
+        Executable executeSetPrice = () -> service.setPrice(0);
+
+        // Then
+        assertThrows(
+                IllegalStateException.class,
+                executeSetPrice
+        );
+    }
+
 
     @Test
     void should_return_exact_sample_data() {
@@ -81,5 +119,17 @@ public class RoomServiceTest {
         for (int i = 0; i < ROOMS_SAMPLE.size(); i++) {
             assertEquals(ROOMS_SAMPLE.get(i), allRooms.get(i));
         }
+    }
+
+    @Test
+    void room_with_same_info_should_be_equals() {
+        // Given
+        RoomService service = new RoomServiceImpl(ONE_ROOM_DAO);
+
+        // When
+        List<Room> allRooms = service.getAllRooms();
+
+        // Then
+        assertEquals(allRooms.get(0), new Room(0, 1, 50));
     }
 }
