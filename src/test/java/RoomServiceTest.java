@@ -63,17 +63,19 @@ public class RoomServiceTest {
                 new Room(2, 201, 50),
                 new Room(3, 301, 50)
         );
-        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
+        RoomDaoTest roomDaoTest = new RoomDaoTest(rooms);
+        RoomService service = new RoomServiceImpl(roomDaoTest);
+
+
 
         // When
         service.setPrice(100);
-        List<Room> allRooms = service.getAllRooms();
 
         // Then
-        assertEquals(allRooms.get(0), new Room(0, 1, 100));
-        assertEquals(allRooms.get(1), new Room(1, 101, 107));
-        assertEquals(allRooms.get(2), new Room(2, 201, 122));
-        assertEquals(allRooms.get(3), new Room(3, 301, 133));
+        assertEquals(roomDaoTest.modifiedRoomAtIndex(0).getPrice(),100);
+        assertEquals(roomDaoTest.modifiedRoomAtIndex(1).getPrice(), 107);
+        assertEquals(roomDaoTest.modifiedRoomAtIndex(2).getPrice(),  122);
+        assertEquals(roomDaoTest.modifiedRoomAtIndex(3).getPrice(),  133);
     }
 
     @Test

@@ -30,13 +30,13 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void setPrice(double price) {
+    public void setPrice(double groundFloorPrice) {
 
         List<Room> roomsWithNewPrice = getAllRooms()
                 .stream()
                 .map(room -> {
                     // Compute new price
-                    double newPrice = getRoomPrice(price, room);
+                    double newPrice = getRoomPrice(groundFloorPrice, room);
 
                     return new Room(room.getFloor(), room.getRoomNumber(), newPrice);
                 }).collect(Collectors.toList());

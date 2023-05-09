@@ -20,4 +20,6 @@ public class RoomDaoTest implements RoomDao {
     public void setRooms(List<Room> roomsWithNewPrice) {
         rooms = roomsWithNewPrice;
     }
+
+    public Room modifiedRoomAtIndex(int index){return rooms.get(index);}
 }
