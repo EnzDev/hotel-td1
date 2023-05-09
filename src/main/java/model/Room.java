@@ -27,4 +27,16 @@ public class Room {
     public int hashCode() {
         return Objects.hash(floor, roomNumber, price);
     }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
