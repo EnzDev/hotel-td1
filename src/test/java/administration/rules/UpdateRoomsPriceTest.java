@@ -1,9 +1,10 @@
 package administration.rules;
 
+import administration.business.entity.Hotel;
 import administration.business.entity.Room;
 import administration.business.rules.usecase.UpdateRoomsPrice;
 import administration.business.rules.usecase.impl.UpdateRoomsPriceImpl;
-import administration.repositories.RoomRepositorySaveSpy;
+import administration.repositories.HotelRepositorySpy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -11,7 +12,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UpdateRoomsPriceTest {
 
@@ -24,7 +26,8 @@ public class UpdateRoomsPriceTest {
                 new Room(2, 201, 50),
                 new Room(3, 301, 50)
         );
-        RoomRepositorySaveSpy roomDaoTest = new RoomRepositorySaveSpy(rooms);
+        Hotel hotel = new Hotel(rooms);
+        HotelRepositorySpy roomDaoTest = new HotelRepositorySpy(hotel);
         UpdateRoomsPrice updateRoomsPrice = new UpdateRoomsPriceImpl(roomDaoTest);
 
         // When
@@ -42,7 +45,8 @@ public class UpdateRoomsPriceTest {
         // Given
         List<Room> rooms = Collections.singletonList(new Room(3, 301, 50));
 
-        RoomRepositorySaveSpy roomDaoTest = new RoomRepositorySaveSpy(rooms);
+        Hotel hotel = new Hotel(rooms);
+        HotelRepositorySpy roomDaoTest = new HotelRepositorySpy(hotel);
         UpdateRoomsPrice updateRoomsPrice = new UpdateRoomsPriceImpl(roomDaoTest);
 
         // When
@@ -60,7 +64,8 @@ public class UpdateRoomsPriceTest {
         // Given
         List<Room> rooms = Collections.singletonList(new Room(4, 401, 50));
 
-        RoomRepositorySaveSpy roomDaoTest = new RoomRepositorySaveSpy(rooms);
+        Hotel hotel = new Hotel(rooms);
+        HotelRepositorySpy roomDaoTest = new HotelRepositorySpy(hotel);
         UpdateRoomsPrice updateRoomsPrice = new UpdateRoomsPriceImpl(roomDaoTest);
 
         // When

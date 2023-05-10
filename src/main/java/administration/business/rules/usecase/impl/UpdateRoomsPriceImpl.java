@@ -1,22 +1,20 @@
 package administration.business.rules.usecase.impl;
 
-import administration.business.entity.Room;
+import administration.business.entity.Hotel;
 import administration.business.rules.usecase.UpdateRoomsPrice;
-import administration.repositories.RoomRepository;
-
-import java.util.List;
+import administration.repositories.HotelRepository;
 
 public class UpdateRoomsPriceImpl implements UpdateRoomsPrice {
-    RoomRepository roomRepository;
+    HotelRepository hotelRepository;
 
-    public UpdateRoomsPriceImpl(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
+    public UpdateRoomsPriceImpl(HotelRepository roomRepository) {
+        this.hotelRepository = roomRepository;
     }
 
     @Override
     public void execute(double groundFloorPrice) {
-        List<Room> allRooms = this.roomRepository.getAll();
-        allRooms.forEach(room -> room.setRoomPrice(groundFloorPrice));
-        this.roomRepository.setRooms(allRooms);
+        Hotel hotel = this.hotelRepository.getMyHotel();
+        hotel.setHotelGroundFloorPrice(groundFloorPrice);
+        this.hotelRepository.updateOneHotel(hotel);
     }
 }
