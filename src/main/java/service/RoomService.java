@@ -1,7 +1,7 @@
 package service;
 
 
-import model.Room;
+import administration.business.entity.Room;
 
 import java.util.List;
 

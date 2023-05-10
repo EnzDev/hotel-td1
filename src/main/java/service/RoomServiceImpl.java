@@ -1,7 +1,7 @@
 package service;
 
 import dao.RoomDao;
-import model.Room;
+import administration.business.entity.Room;
 
 import java.util.HashMap;
 import java.util.List;

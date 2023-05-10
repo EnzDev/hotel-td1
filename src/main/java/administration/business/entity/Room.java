@@ -1,4 +1,4 @@
-package model;
+package administration.business.entity;
 
 import java.util.Objects;
 

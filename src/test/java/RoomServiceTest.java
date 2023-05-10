@@ -1,6 +1,6 @@
 import dao.RoomDao;
 import dao.RoomDaoTest;
-import model.Room;
+import administration.business.entity.Room;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import service.RoomService;
