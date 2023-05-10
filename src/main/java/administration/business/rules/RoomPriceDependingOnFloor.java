@@ -1,7 +1,5 @@
 package administration.business.rules;
 
-import administration.business.entity.Room;
-
 import java.util.HashMap;
 import java.util.Map;
 
