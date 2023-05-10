@@ -38,14 +38,6 @@ public class Room {
         return Objects.hash(floor, roomNumber, price);
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -57,5 +49,9 @@ public class Room {
         }
 
         this.price = Math.min(basePrice * rate, MAX_ROOM_PRICE);
+    }
+
+    public RoomDto toDto() {
+        return new RoomDto(this.floor, this.roomNumber, this.price);
     }
 }
