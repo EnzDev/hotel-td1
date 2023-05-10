@@ -1,7 +1,7 @@
 package service;
 
 import administration.business.rules.RoomPriceDependingOnFloor;
-import dao.RoomDao;
+import administration.gateway.RoomDao;
 import administration.business.entity.Room;
 
 import java.util.List;

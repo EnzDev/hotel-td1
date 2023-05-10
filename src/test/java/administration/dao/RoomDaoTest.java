@@ -1,6 +1,7 @@
-package dao;
+package administration.dao;
 
 import administration.business.entity.Room;
+import administration.gateway.RoomDao;
 
 import java.util.List;
 

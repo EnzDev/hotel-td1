@@ -1,4 +1,4 @@
-package dao;
+package administration.gateway;
 
 import administration.business.entity.Room;
 

@@ -1,5 +1,7 @@
-import dao.RoomDao;
-import dao.RoomDaoTest;
+package administration;
+
+import administration.gateway.RoomDao;
+import administration.dao.RoomDaoTest;
 import administration.business.entity.Room;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
