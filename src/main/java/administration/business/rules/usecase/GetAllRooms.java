@@ -1,7 +1,7 @@
 package administration.business.rules.usecase;
 
-import administration.business.rules.usecase.output.RoomsPresenter;
+import administration.business.rules.usecase.output.HotelPresenter;
 
 public interface GetAllRooms {
-    void execute(RoomsPresenter presenter);
+    void execute(HotelPresenter presenter);
 }

@@ -1,11 +1,14 @@
 package administration.rules;
 
+import administration.business.entity.Floor;
+import administration.business.entity.Hotel;
 import administration.business.entity.Room;
+import administration.business.entity.RoomPrice;
 import administration.business.rules.usecase.GetAllRooms;
 import administration.business.rules.usecase.impl.GetAllRoomsImpl;
-import administration.controller.RoomsStringPresenter;
-import administration.repositories.RoomRepositoryParametrized;
-import administration.repositories.RoomRepository;
+import administration.controller.HotelStringPresenter;
+import administration.repositories.HotelRepository;
+import administration.repositories.HotelRepositoryParametrized;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,30 +21,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetAllRoomsTest {
 
-    private static final RoomRepository EMPTY_ROOM_DAO = new RoomRepositoryParametrized(new ArrayList<>());
+    private static final HotelRepository EMPTY_HOTEL_DAO = new HotelRepositoryParametrized(new Hotel(new ArrayList<>()));
 
-    private static final RoomRepository ONE_ROOM_DAO = new RoomRepositoryParametrized(Collections.singletonList(
-            new Room(0, 1, 50)
-    ));
+    private static final HotelRepository ONE_ROOM_HOTEL_DAO = new HotelRepositoryParametrized(new Hotel(Collections.singletonList(
+            new Floor(0, Collections.singletonList(new Room( 1, new RoomPrice(50))))
+    )));
 
-    private static final List<Room> ROOMS_SAMPLE = Arrays.asList(
-            new Room(0, 1, 50),
-            new Room(0, 2, 50),
-            new Room(1, 101, 53.5),
-            new Room(1, 102, 53.5),
-            new Room(1, 103, 53.5),
-            new Room(2, 201, 61),
-            new Room(2, 202, 61),
-            new Room(3, 301, 66.5)
+    private static final List<Floor> FLOORS_SAMPLE = Arrays.asList(
+            new Floor(0, Arrays.asList(new Room(1, new RoomPrice(50)), new Room(2, new RoomPrice(50)))),
+            new Floor(1, Arrays.asList(new Room(101, new RoomPrice(53.5)), new Room(102, new RoomPrice(53.5)), new Room(103, new RoomPrice(53.5)))),
+            new Floor(2, Arrays.asList(new Room(201, new RoomPrice(61)), new Room(202, new RoomPrice(61)))),
+            new Floor(3, Collections.singletonList(new Room(301, new RoomPrice(66.5))))
     );
-    private static final RoomRepository SAMPLE_ROOM_DAO = new RoomRepositoryParametrized(ROOMS_SAMPLE);
+    private static final HotelRepository SAMPLE_ROOM_DAO = new HotelRepositoryParametrized(new Hotel(FLOORS_SAMPLE));
 
 
     @Test
     void should_return_empty_rooms() {
         // Given
-        GetAllRooms getAllRooms = new GetAllRoomsImpl(EMPTY_ROOM_DAO);
-        RoomsStringPresenter presenter = new RoomsStringPresenter();
+        GetAllRooms getAllRooms = new GetAllRoomsImpl(EMPTY_HOTEL_DAO);
+        HotelStringPresenter presenter = new HotelStringPresenter();
 
         // When
         getAllRooms.execute(presenter);
@@ -53,8 +52,8 @@ public class GetAllRoomsTest {
     @Test
     void should_return_some_rooms() {
         // Given
-        GetAllRooms getAllRooms = new GetAllRoomsImpl(ONE_ROOM_DAO);
-        RoomsStringPresenter presenter = new RoomsStringPresenter();
+        GetAllRooms getAllRooms = new GetAllRoomsImpl(ONE_ROOM_HOTEL_DAO);
+        HotelStringPresenter presenter = new HotelStringPresenter();
 
         // When
         getAllRooms.execute(presenter);
@@ -67,7 +66,7 @@ public class GetAllRoomsTest {
     void should_return_exact_sample_data() {
         // Given
         GetAllRooms getAllRooms = new GetAllRoomsImpl(SAMPLE_ROOM_DAO);
-        RoomsStringPresenter presenter = new RoomsStringPresenter();
+        HotelStringPresenter presenter = new HotelStringPresenter();
 
         // When
         getAllRooms.execute(presenter);
@@ -88,8 +87,8 @@ public class GetAllRoomsTest {
     @Test
     void room_with_same_info_should_be_equals() {
         // Given
-        GetAllRooms getAllRooms = new GetAllRoomsImpl(ONE_ROOM_DAO);
-        RoomsStringPresenter presenter = new RoomsStringPresenter();
+        GetAllRooms getAllRooms = new GetAllRoomsImpl(ONE_ROOM_HOTEL_DAO);
+        HotelStringPresenter presenter = new HotelStringPresenter();
 
         // When
         getAllRooms.execute(presenter);

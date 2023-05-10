@@ -1,7 +1,7 @@
 package administration.repositories;
 
 import administration.business.entity.Hotel;
-import administration.business.entity.dto.RoomDto;
+import administration.business.entity.dto.RoomFloorDto;
 
 public class HotelRepositorySpy extends HotelRepositoryParametrized {
     private Hotel updatedHotel;
@@ -15,8 +15,7 @@ public class HotelRepositorySpy extends HotelRepositoryParametrized {
         this.updatedHotel = hotel;
     }
 
-    public RoomDto modifiedRoomDtoAtIndex(int index){
-        return updatedHotel.toDto().rooms.get(index);
+    public RoomFloorDto modifiedRoomAtIndex(int index){
+        return updatedHotel.toDto().get(index);
     }
-
 }

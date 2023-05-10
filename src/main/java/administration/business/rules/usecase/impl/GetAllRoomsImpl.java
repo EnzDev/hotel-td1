@@ -1,27 +1,23 @@
 package administration.business.rules.usecase.impl;
 
-import administration.business.entity.Room;
-import administration.business.entity.dto.RoomDto;
+import administration.business.entity.dto.RoomFloorDto;
 import administration.business.rules.usecase.GetAllRooms;
-import administration.business.rules.usecase.output.RoomsPresenter;
-import administration.repositories.RoomRepository;
+import administration.business.rules.usecase.output.HotelPresenter;
+import administration.repositories.HotelRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GetAllRoomsImpl implements GetAllRooms {
-    RoomRepository roomRepository;
+    HotelRepository hotelRepository;
 
-    public GetAllRoomsImpl(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
+    public GetAllRoomsImpl(HotelRepository hotelRepository) {
+        this.hotelRepository = hotelRepository;
     }
 
     @Override
-    public void execute(RoomsPresenter presenter) {
-        List<RoomDto> rooms = roomRepository.getAll()
-                .stream()
-                .map(Room::toDto)
-                .collect(Collectors.toList());
-        presenter.present(rooms);
+    public void execute(HotelPresenter presenter) {
+        List<RoomFloorDto> roomsDto = hotelRepository.getMyHotel()
+                .toDto();
+        presenter.present(roomsDto);
     }
 }

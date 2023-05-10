@@ -1,27 +1,26 @@
 package administration.business.entity;
 
-import administration.business.entity.dto.HotelDto;
-import administration.business.entity.dto.RoomDto;
+import administration.business.entity.dto.RoomFloorDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 /** Root Entity **/
 public class Hotel {
-    List<Room> rooms;
+    List<Floor> floors;
 
-    public Hotel(List<Room> rooms) {
-        this.rooms = rooms;
+    public Hotel(List<Floor> floors) {
+        this.floors = floors;
     }
 
     public void setHotelGroundFloorPrice(double groundFloorPrice) {
-        rooms.forEach(room -> room.setRoomPrice(groundFloorPrice));
+        floors.forEach(floor -> floor.setGroundFloorPrice(groundFloorPrice));
     }
 
-    public HotelDto toDto() {
-        List<RoomDto> roomList = rooms.stream()
-                .map(Room::toDto)
+    public List<RoomFloorDto> toDto() {
+        return floors.stream()
+                .map(Floor::toDto)
+                .flatMap(List::stream)
                 .collect(Collectors.toList());
-        return new HotelDto(roomList);
     }
 }
