@@ -2,7 +2,7 @@ package administration.business.rules.usecase.impl;
 
 import administration.business.entity.Room;
 import administration.business.rules.usecase.UpdateRoomsPrice;
-import administration.gateway.RoomRepository;
+import administration.repositories.RoomRepository;
 
 import java.util.List;
 

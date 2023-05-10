@@ -4,8 +4,8 @@ import administration.business.entity.Room;
 import administration.business.rules.usecase.GetAllRooms;
 import administration.business.rules.usecase.impl.GetAllRoomsImpl;
 import administration.controller.RoomsStringPresenter;
-import administration.gateway.RoomRepositoryParametrized;
-import administration.gateway.RoomRepository;
+import administration.repositories.RoomRepositoryParametrized;
+import administration.repositories.RoomRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

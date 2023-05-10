@@ -1,6 +1,6 @@
-import administration.gateway.RoomRepositorySaveSpy;
-import administration.gateway.RoomRepository;
-import administration.gateway.RoomRepositoryParametrized;
+import administration.repositories.RoomRepositorySaveSpy;
+import administration.repositories.RoomRepository;
+import administration.repositories.RoomRepositoryParametrized;
 import administration.business.entity.Room;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;

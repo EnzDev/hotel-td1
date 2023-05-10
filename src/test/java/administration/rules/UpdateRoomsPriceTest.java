@@ -3,7 +3,7 @@ package administration.rules;
 import administration.business.entity.Room;
 import administration.business.rules.usecase.UpdateRoomsPrice;
 import administration.business.rules.usecase.impl.UpdateRoomsPriceImpl;
-import administration.gateway.RoomRepositorySaveSpy;
+import administration.repositories.RoomRepositorySaveSpy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 

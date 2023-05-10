@@ -1,4 +1,4 @@
-package administration.gateway;
+package administration.repositories;
 
 import administration.business.entity.Room;
 import administration.business.entity.dto.RoomDto;

@@ -1,6 +1,6 @@
 package service;
 
-import administration.gateway.RoomRepository;
+import administration.repositories.RoomRepository;
 import administration.business.entity.Room;
 
 import java.util.List;

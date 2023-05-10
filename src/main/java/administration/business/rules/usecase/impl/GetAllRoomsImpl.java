@@ -4,7 +4,7 @@ import administration.business.entity.Room;
 import administration.business.entity.dto.RoomDto;
 import administration.business.rules.usecase.GetAllRooms;
 import administration.business.rules.usecase.output.RoomsPresenter;
-import administration.gateway.RoomRepository;
+import administration.repositories.RoomRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
