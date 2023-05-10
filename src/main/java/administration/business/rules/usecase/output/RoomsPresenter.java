@@ -1,6 +1,6 @@
 package administration.business.rules.usecase.output;
 
-import administration.business.entity.RoomDto;
+import administration.business.entity.dto.RoomDto;
 
 import java.util.List;
 

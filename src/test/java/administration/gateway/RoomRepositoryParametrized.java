@@ -1,14 +1,13 @@
-package administration.dao;
+package administration.gateway;
 
 import administration.business.entity.Room;
-import administration.gateway.RoomDao;
 
 import java.util.List;
 
-public class RoomDaoParametrized implements RoomDao {
+public class RoomRepositoryParametrized implements RoomRepository {
     private final List<Room> rooms;
 
-    public RoomDaoParametrized(List<Room> rooms) {
+    public RoomRepositoryParametrized(List<Room> rooms) {
         this.rooms = rooms;
     }
 

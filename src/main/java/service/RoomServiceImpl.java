@@ -1,17 +1,16 @@
 package service;
 
-import administration.gateway.RoomDao;
+import administration.gateway.RoomRepository;
 import administration.business.entity.Room;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RoomServiceImpl implements RoomService {
 
 
-    private final RoomDao dao;
+    private final RoomRepository dao;
 
-    public RoomServiceImpl(RoomDao dao) {
+    public RoomServiceImpl(RoomRepository dao) {
         this.dao = dao;
     }
 

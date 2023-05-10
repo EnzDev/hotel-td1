@@ -2,21 +2,21 @@ package administration.business.rules.usecase.impl;
 
 import administration.business.entity.Room;
 import administration.business.rules.usecase.UpdateRoomsPrice;
-import administration.gateway.RoomDao;
+import administration.gateway.RoomRepository;
 
 import java.util.List;
 
 public class UpdateRoomsPriceImpl implements UpdateRoomsPrice {
-    RoomDao roomDao;
+    RoomRepository roomRepository;
 
-    public UpdateRoomsPriceImpl(RoomDao roomDao) {
-        this.roomDao = roomDao;
+    public UpdateRoomsPriceImpl(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
     }
 
     @Override
     public void execute(double groundFloorPrice) {
-        List<Room> allRooms = this.roomDao.getAll();
+        List<Room> allRooms = this.roomRepository.getAll();
         allRooms.forEach(room -> room.setRoomPrice(groundFloorPrice));
-        this.roomDao.setRooms(allRooms);
+        this.roomRepository.setRooms(allRooms);
     }
 }

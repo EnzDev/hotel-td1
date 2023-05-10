@@ -1,4 +1,4 @@
-package administration.business.entity;
+package administration.business.entity.dto;
 
 public class RoomDto {
     public final int floor;

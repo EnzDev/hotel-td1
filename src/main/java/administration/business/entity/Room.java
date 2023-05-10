@@ -1,5 +1,7 @@
 package administration.business.entity;
 
+import administration.business.entity.dto.RoomDto;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -36,10 +38,6 @@ public class Room {
     @Override
     public int hashCode() {
         return Objects.hash(floor, roomNumber, price);
-    }
-
-    public double getPrice() {
-        return price;
     }
 
     public void setRoomPrice(double basePrice) {
