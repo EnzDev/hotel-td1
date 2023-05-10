@@ -1,7 +1,8 @@
 package administration;
 
+import administration.dao.RoomDaoSaveSpy;
 import administration.gateway.RoomDao;
-import administration.dao.RoomDaoTest;
+import administration.dao.RoomDaoParametrized;
 import administration.business.entity.Room;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -13,9 +14,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomServiceTest {
-    private static final RoomDao EMPTY_ROOM_DAO = new RoomDaoTest(new ArrayList<>());
+    private static final RoomDao EMPTY_ROOM_DAO = new RoomDaoParametrized(new ArrayList<>());
 
-    private static final RoomDao ONE_ROOM_DAO = new RoomDaoTest(Collections.singletonList(
+    private static final RoomDao ONE_ROOM_DAO = new RoomDaoParametrized(Collections.singletonList(
             new Room(0, 1, 50)
     ));
 
@@ -29,7 +30,7 @@ public class RoomServiceTest {
             new Room(2, 202, 61),
             new Room(3, 301, 66.5)
     );
-    private static final RoomDao SAMPLE_ROOM_DAO = new RoomDaoTest(ROOMS_SAMPLE);
+    private static final RoomDao SAMPLE_ROOM_DAO = new RoomDaoParametrized(ROOMS_SAMPLE);
 
 
     @Test
@@ -65,7 +66,7 @@ public class RoomServiceTest {
                 new Room(2, 201, 50),
                 new Room(3, 301, 50)
         );
-        RoomDaoTest roomDaoTest = new RoomDaoTest(rooms);
+        RoomDaoSaveSpy roomDaoTest = new RoomDaoSaveSpy(rooms);
         RoomService service = new RoomServiceImpl(roomDaoTest);
 
 
@@ -84,7 +85,7 @@ public class RoomServiceTest {
     void should_update_price_not_over_200() {
         // Given
         List<Room> rooms = Collections.singletonList(new Room(3, 301, 50));
-        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
+        RoomService service = new RoomServiceImpl(new RoomDaoParametrized(rooms));
 
         // When
         service.setPrice(190);
@@ -98,7 +99,7 @@ public class RoomServiceTest {
     void should_break_when_invalid_floor() {
         // Given
         List<Room> rooms = Collections.singletonList(new Room(4, 301, 50));
-        RoomService service = new RoomServiceImpl(new RoomDaoTest(rooms));
+        RoomService service = new RoomServiceImpl(new RoomDaoParametrized(rooms));
 
         // When
         Executable executeSetPrice = () -> service.setPrice(0);

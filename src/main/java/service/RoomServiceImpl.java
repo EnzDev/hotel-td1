@@ -1,6 +1,5 @@
 package service;
 
-import administration.business.rules.RoomPriceDependingOnFloor;
 import administration.gateway.RoomDao;
 import administration.business.entity.Room;
 
@@ -24,15 +23,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void setPrice(double groundFloorPrice) {
 
-        List<Room> roomsWithNewPrice = getAllRooms()
-                .stream()
-                .map(room -> {
-                    // Compute new price
-                    double newPrice = RoomPriceDependingOnFloor.getRoomPrice(groundFloorPrice, room.getFloor());
-
-                    return new Room(room.getFloor(), room.getRoomNumber(), newPrice);
-                }).collect(Collectors.toList());
-
+        List<Room> roomsWithNewPrice = getAllRooms();
+        getAllRooms().forEach(room -> room.setRoomPrice(groundFloorPrice));
         dao.setRooms(roomsWithNewPrice);
     }
 }
